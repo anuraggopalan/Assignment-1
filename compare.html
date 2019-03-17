@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+body {background-color: white;}
+div{
+font-size: 22px
+}
+div2{
+font-size: 28px
+}
+</style>
+<body>
+<h1>Compare GPUs</h1>
+<form method="post" action="/compare">
+    <div>
+{% if available_gpus %}
+    Select GPU 1:
+    <select name="gpu1_key">
+        <option value="Select One">Select One</option>
+        {% for i in available_gpus%}
+            <option value="{{ i.id() }}">{{ i.id() }}</option>
+        {% endfor %}
+    </select>
+<br>
+    Select GPU 2:
+    <select name="gpu2_key">
+        <option value="Select One">Select One</option>
+        {% for i in available_gpus%}
+            <option value="{{ i.id() }}">{{ i.id() }}</option>
+        {% endfor %}
+    </select>
+{% endif %}
+    <br>
+<input type="submit" value="Compare" name="button">
+        </div>
+</form>
+{% if gpu1 and gpu2 %}
+    <table>
+        <tr>
+            <th>
+               Specification
+            </th>
+            <th>
+                GPU1
+            </th>
+            <th>
+                GPU2
+            </th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{ gpu1.name }}</td>
+            <td>{{ gpu2.name }}</td>
+        </tr>
+        <tr>
+            <td>Manufacturer</td>
+            <td>{{ gpu1.manufacturer }}</td>
+            <td>{{ gpu2.manufacturer }}</td>
+        </tr>
+        <tr>
+            <td>Date Issued</td>
+            <td>{{ gpu1.dateIssued }}</td>
+            <td>{{ gpu2.dateIssued }}</td>
+        </tr>
+        <tr>
+            <td>Geometry Shader</td>
+            <td>{{ gpu1.geometryShader }}</td>
+            <td>{{ gpu2.geometryShader }}</td>
+        </tr>
+        <tr>
+            <td>Tesselation Shader</td>
+            <td>{{ gpu1.tesselationShader }}</td>
+            <td>{{ gpu2.tesselationShader }}</td>
+        </tr>
+        <tr>
+            <td>Shader Int 16</td>
+            <td>{{ gpu1.shaderInt16 }}</td>
+            <td>{{ gpu2.shaderInt16 }}</td>
+        </tr>
+        <tr>
+            <td>Sparse Binding</td>
+            <td>{{ gpu1.sparseBinding }}</td>
+            <td>{{ gpu2.sparseBinding }}</td>
+        </tr>
+        <tr>
+            <td>Texture Compression ETC2</td>
+            <td>{{ gpu1.textureCompressionETC2 }}</td>
+            <td>{{ gpu2.textureCompressionETC2 }}</td>
+        </tr>
+        <tr>
+            <td>Vertex Pipeline Stores And Atomic</td>
+            <td>{{ gpu1.vertexPipelineStoresAndAtomic }}</td>
+            <td>{{ gpu2.vertexPipelineStoresAndAtomic }}</td>
+        </tr>
+    </table>
+{% endif %}
+
+{% if error %}
+<div2>
+    <b><p style="color:red">Comparison Error!!!</p></b>
+    <b><p style="color:black">{{ error }}</p></b>
+</div2>
+{% endif %}
+
+</body>
+</html>

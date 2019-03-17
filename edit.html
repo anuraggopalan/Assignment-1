@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+
+   <meta charset="utf-8">
+   <title>Edit GPU</title>
+ </head>
+ <style>
+body {background-color: white;}
+div{
+font-size: 22px
+}
+div2{
+font-size: 24px;
+}
+p{
+font-weight: bold;
+font-size: 26px;
+}
+</style>
+ <body>
+<div2>
+   Edit GPU information below
+  <br/>
+
+   {% if gpu_details %}
+   <p>{{ gpu_details.name }}</p>
+  </div2>
+     <form action="/edit?gid={{gpu_details.name}}" method="post">
+       <div>
+       Name: <input type="text" name="edit_name" value="{{gpu_details.name}}" required/>
+       <br/>
+       <br/>
+       Manufacturer:<input type="text" name="edit_manufacturer" value="{{ gpu_details.manufacturer }}" required/>
+       <br/>
+       <br/>
+       Issued date:<input type="date" name="edit_dateIssued" value="{{ gpu_details.dateIssued }}" />
+       <br/>
+       <br/>
+
+       {% if gpu_details.geometryShader %}
+         Geometry shader:<input type="radio" name="edit_geometryShader" value="True" checked/>True
+         <input type="radio" name="edit_geometryShader" value="False"/>False
+       {% else %}
+         Geometry shader:<input type="radio" name="edit_geometryShader" value="True"/>True
+         <input type="radio" name="edit_geometryShader" value="False" checked/>False
+       {% endif %}
+       <br/>
+       <br/>
+
+       {% if gpu_details.tesselationShader %}
+         Tesselation Shader:<input type="radio" name="edit_tesselationShader" value="True" checked/>True
+         <input type="radio" name="edit_tesselationShader" value="False"/>False
+       {% else %}
+         Tesselation Shader:<input type="radio" name="edit_tesselationShader" value="True"/>True
+         <input type="radio" name="edit_tesselationShader" value="False" checked/>False
+       {% endif %}
+       <br/>
+       <br/>
+
+       {% if gpu_details.shaderInt16 %}
+         Shader Int 16<input type="radio" name="edit_shaderInt16" value="True" checked/>True
+         <input type="radio" name="edit_shaderInt16" value="False"/>False
+       {% else %}
+          Shader Int 16<input type="radio" name="edit_shaderInt16" value="True" />True
+            <input type="radio" name="edit_shaderInt16" value="False" checked/>False
+       {% endif %}
+       <br/>
+       <br/>
+
+       {% if gpu_details.sparseBinding %}
+          Sparse Binding<input type="radio" name="edit_sparseBinding" value="True" checked/>True
+         <input type="radio" name="edit_sparseBinding" value="False"/>False
+       {% else %}
+           Sparse Binding<input type="radio" name="edit_sparseBinding" value="True"/>True
+            <input type="radio" name="edit_sparseBinding" value="False" checked/>False
+       {% endif %}
+       <br/>
+       <br/>
+
+       {% if gpu_details.textureCompressionETC2 %}
+          Texture CompressionETC2<input type="radio" name="edit_textureCompressionETC2" value="True" checked/>True
+         <input type="radio" name="edit_textureCompressionETC2" value="False"/>False
+       {% else %}
+          Texture CompressionETC<input type="radio" name="edit_textureCompressionETC2" value="True"/>True
+            <input type="radio" name="edit_textureCompressionETC2" value="False" checked/>False
+       {% endif %}
+       <br/>
+       <br/>
+
+       {% if gpu_details.vertexPipelineStoresAndAtomic %}
+          Vertex Pipeline Stores And Atomic<input type="radio" name="edit_v_p_s_a" value="True" checked/>True
+         <input type="radio" name="edit_v_p_s_a" value="False"/>False
+       {% else %}
+          Vertex Pipeline Stores And Atomic<input type="radio" name="edit_v_p_s_a" value="True"/>True
+            <input type="radio" name="edit_v_p_s_a" value="False" checked/>False
+       {% endif %}
+       <br/>
+       <br/>
+       <input type="submit" name="button" value="Update"/>
+         </div>
+</form>
+   {% endif %}
+<br/>
+   {% if error %}
+      <h3 style="color:red">{{ error }}</h3>
+    {% endif %}
+<form method="get" action="/">
+<input type="submit" value="Cancel" name="button"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {background-color: white;}
+        div{
+        font-size: 22px
+        }
+        a{
+        font-size: 25px;
+        color: Black;
+        }
+    </style>
+</head>
+<body>
+    <h2>GPU Details</h2>
+    <div>
+    {% if gpu_det %}
+        <p>Name: {{gpu_det.name}}</p>
+        <p>Manufacturer: {{gpu_det.manufacturer}}</p>
+        <p>Date Issued: {{gpu_det.dateIssued}}</p>
+        <p>Geometry Shader: {{gpu_det.geometryShader}}</p>
+        <p>Tesselation Shader: {{gpu_det.tesselationShader}}</p>
+        <p>Sparse Binding: {{gpu_det.sparseBinding}}</p>
+        <p>Shader Int16: {{gpu_det.shaderInt16}}</p>
+        <p>Texture CompressionETC2: {{gpu_det.textureCompressionETC2}}</p>
+        <p>Vertex Pipeline Stores And Atomic: {{gpu_det.vertexPipelineStoresAndAtomic}}</p>
+     </div>
+    <br/>
+   <i> <b> <a type="button" href="/edit?gid={{ gpu_det.name }}">Edit GPU</a></b></i>
+    {% endif %}
+</body>
+</html>

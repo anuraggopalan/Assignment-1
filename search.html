@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Add GPU</title>
+</head>
+<style>
+body {background-color: white;}
+div{
+font-size: 22px
+}
+</style>
+<body>
+<h1>Search GPUs</h1>
+<form method="post" action="/search">
+<div>
+    Geometry Shader:<input type="checkbox" name="s_geometryShader" value=""/>
+    <br/>
+    Tesselation Shader:<input type="checkbox" name="s_tesselationShader" value=""/>
+    <br/>
+    Shader Int16:<input type="checkbox" name="s_shaderInt16" value=""/>
+    <br/>
+    Sparse Binding:<input type="checkbox" name="s_sparseBinding" value=""/>
+    <br/>
+    Texture CompressionETC2:<input type="checkbox" name="s_textureCompressionECT2" value=""/>
+    <br/>
+    Vertex Pipeline Stores And Atomics:<input type="checkbox" name="s_v_p_s_a" value=""/>
+    <br/>
+    <br/>
+    <input type="submit" name="button" value="Search"/>
+    </div>
+</form>
+<br/>
+
+{% if gpus %}
+<h2>GPUs Found</h2>
+    {% for i in gpus%}
+        <p><a href = "/view?id={{ i.name }}" target="_blank">{{ i.name }}</a></p>
+    {% endfor %}
+{% endif %}
+{% if error %}
+    <p style="color:red">{{ error}}</p>
+{% endif %}
+</body>
+</html>

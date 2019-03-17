@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title >Add GPU</title>
+</head>
+<style>
+body {background-color: white;}
+div{
+font-size: 22px
+}
+
+</style>
+
+<body>
+<form method="post" action="/add">
+    <div>
+    Name:<input type="text" name="add_name" value="" required/>
+    <br/>
+    Manufacturer:<input type="text" name="add_manufacturer" value="" required/>
+    <br/>
+    Date Issued:<input type="date" name="add_dateIssued" value="" required/>
+    <br/>
+    Geometry Shader:<input type="checkbox" name="add_geometryShader" value=""/>
+    <br/>
+    Tesselation Shader:<input type="checkbox" name="add_tesselationShader" value=""/>
+    <br/>
+    Shader Int16:<input type="checkbox" name="add_shaderInt16" value=""/>
+    <br/>
+    Sparse Binding:<input type="checkbox" name="add_sparseBinding" value=""/>
+    <br/>
+    Texture CompressionETC2:<input type="checkbox" name="add_textureCompressionECT2" value=""/>
+    <br/>
+    Vertex Pipeline Stores And Atomics:<input type="checkbox" name="add_v_p_s_a" value=""/>
+    <br/>
+    <br/>
+    <input type="submit" name="button" value="Add Gpu"/>
+        </div>
+</form>
+
+<form method="post" action="/">
+<input type="submit" value="Cancel" name="button"/>
+</form>
+</body>
+</html>
